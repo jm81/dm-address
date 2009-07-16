@@ -45,7 +45,7 @@ describe DataMapper::Types::PhoneNumber do
  
   describe '.typecast' do
     it 'should do nothing if an PhoneNumber is provided' do
-      @klass.typecast(@ip, :property).should == @ip
+      @klass.typecast(@phone, :property).should == @phone
     end
  
     it 'should defer to .load if a string is provided' do
