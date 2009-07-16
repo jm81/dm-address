@@ -14,7 +14,7 @@ module DataMapper
       # Default is "(%A) %P-%S" -> (###) ###-####
       def to_s(format = nil)
         unless format
-          format = DEFAULT_FORMAT
+          format = DataMapper::Address.config[:phone_format] || DEFAULT_FORMAT
         end
         return '' if base.nil? || base.empty?
         format.gsub(/\%A/, base[0..2]).
