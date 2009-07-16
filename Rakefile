@@ -9,6 +9,8 @@ begin
     gem.email = "jmorgan@morgancreative.net"
     gem.homepage = "http://github.com/jm81/dm-address"
     gem.authors = ["Jared Morgan"]
+    gem.add_dependency('extlib')
+    gem.add_dependency('dm-core')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
