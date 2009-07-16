@@ -26,7 +26,7 @@ if defined?(Merb::Plugins)
 end
 
 # Require dm-types files
-%w{ phone_number }.each do |file|
+%w{ phone_number zip_code }.each do |file|
   require File.dirname(__FILE__) + '/dm-types/' + file
 end
 
