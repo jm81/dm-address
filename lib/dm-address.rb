@@ -1,3 +1,5 @@
+require 'dm-core'
+
 # Require dm-address files
 %w{ phone_number }.each do |file|
   require File.dirname(__FILE__) + '/dm-address/' + file
@@ -22,3 +24,9 @@ if defined?(Merb::Plugins)
   # Make config accessible through Merb's Merb::Plugins.config hash
   Merb::Plugins.config[:dm_address] = DataMapper::Address.config
 end
+
+# Require dm-types files
+%w{ phone_number }.each do |file|
+  require File.dirname(__FILE__) + '/dm-types/' + file
+end
+
