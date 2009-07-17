@@ -1,14 +1,18 @@
 require 'dm-core'
+require 'dm-types'
+require 'dm-validations'
 
 # Require dm-address files
-%w{ phone_number zip_code }.each do |file|
+%w{ phone_number zip_code us }.each do |file|
   require File.dirname(__FILE__) + '/dm-address/' + file
 end
 
 module DataMapper
   module Address
     DEFAULTS = {
-      :phone_format => PhoneNumber::DEFAULT_FORMAT
+      :phone_format => PhoneNumber::DEFAULT_FORMAT,
+      :include_country => false,
+      :include_phone => false
     }
     
     class << self
