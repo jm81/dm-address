@@ -3,6 +3,10 @@ module DataMapper
     # Include in a DataMapper::Resource model to add fields and methods for
     # a US-style address.
     module US
+      DEFAULT_REQUIRED_FIELDS = [
+        :street, :city, :state, :postal_code, :country
+      ]
+      
       class << self
         def included(klass)
           klass.extend(ClassMethods)
@@ -10,27 +14,38 @@ module DataMapper
       end # class << self
       
       module ClassMethods
-        def address_properties
-          # Set default properties; already added properties are not overriden.
+        
+        # Setup properties. Already added properties are not overriden.
+        # options:
+        # - +prefix+: Add a prefix to field names
+        # - +required_fields+: Override DataMapper::Address.config[:us_required_fields]
+        def address_properties(options = {})
+          reqs = options[:required_fields] || 
+                 DataMapper::Address.config[:us_required_fields] || 
+                 DEFAULT_REQUIRED_FIELDS
+          
           [
             [:id, DataMapper::Types::Serial],
-            [:name, String, {:nullable => true, :length => 100}],
-            [:company, String, {:nullable => true, :length => 100}],
-            [:street, String, {:nullable => false, :length => 100}],
+            [:name, String, {:length => 100}],
+            [:company, String, {:length => 100}],
+            [:street, String, {:length => 100}],
             [:street_2, String],
-            [:city, String, {:nullable => false, :length => 100}],
-            [:state, String, {:nullable => false, :length => 2}],
-            [:postal_code, DataMapper::Types::ZipCode, {:nullable => false,
+            [:city, String, {:length => 100}],
+            [:state, String, {:length => 2}],
+            [:postal_code, DataMapper::Types::ZipCode, {
                 :format => Proc.new { |zc| zc.nil? || zc.length == 5 || zc.length == 9 },
                 :messages => { :format => "Postal code should be 5 digits or 9 digits (ZIP+4)" }}],
             [:country, String, {:nullable => false, :length => 50, :default => 'USA'}],
-            [:phone, DataMapper::Types::PhoneNumber, {:nullable => true,
+            [:phone, DataMapper::Types::PhoneNumber, {
                  :format => Proc.new { |ph| ph.blank? || ph.length == 10 },
                  :messages => { :format => "Phone number should be 10 digits (include area code)" }}],
             [:created_at, DateTime],
             [:updated_at, DateTime]
           ].each do |args|
             unless self.properties.has_property?(args[0])
+              args[0] = "#{options[:prefix]}#{args[0]}" if options[:prefix]
+              args[2] ||= {}
+              args[2][:nullable] = !reqs.include?(args[0])
               self.property(*args)
             end
           end

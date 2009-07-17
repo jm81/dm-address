@@ -10,9 +10,10 @@ end
 module DataMapper
   module Address
     DEFAULTS = {
-      :phone_format => PhoneNumber::DEFAULT_FORMAT,
+      :phone_format => PhoneNumber::DEFAULT_FORMAT.dup,
       :include_country => false,
-      :include_phone => false
+      :include_phone => false,
+      :us_required_fields => US::DEFAULT_REQUIRED_FIELDS.dup
     }
     
     class << self
