@@ -11,6 +11,8 @@ begin
     gem.authors = ["Jared Morgan"]
     gem.add_dependency('extlib')
     gem.add_dependency('dm-core')
+    gem.add_dependency('dm-types')
+    gem.add_dependency('dm-validations')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
