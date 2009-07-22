@@ -35,3 +35,7 @@ end
   require File.dirname(__FILE__) + '/dm-types/' + file
 end
 
+# Require dm-validations/formats files
+%w{ phone_number zip_code }.each do |file|
+  require File.dirname(__FILE__) + '/dm-validations/formats/' + file
+end
