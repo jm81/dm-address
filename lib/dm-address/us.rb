@@ -32,13 +32,9 @@ module DataMapper
             [:street_2, String],
             [:city, String, {:length => 100}],
             [:state, String, {:length => 2}],
-            [:postal_code, DataMapper::Types::ZipCode, {
-                :format => Proc.new { |zc| zc.blank? || zc.length == 5 || zc.length == 9 },
-                :messages => { :format => "Postal code should be 5 digits or 9 digits (ZIP+4)" }}],
+            [:postal_code, DataMapper::Types::ZipCode, {:format => :zip_code}],
             [:country, String, {:nullable => false, :length => 50, :default => 'USA'}],
-            [:phone, DataMapper::Types::PhoneNumber, {
-                 :format => Proc.new { |ph| ph.blank? || ph.length == 10 },
-                 :messages => { :format => "Phone number should be 10 digits (include area code)" }}],
+            [:phone, DataMapper::Types::PhoneNumber, {:format => :phone_number}],
             [:created_at, DateTime],
             [:updated_at, DateTime]
           ].each do |args|

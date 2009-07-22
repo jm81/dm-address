@@ -1,7 +1,7 @@
 module DataMapper
   module Address
     class ZipCode < String     
-      # Remove all non-digits from given phone number
+      # Remove all non-digits from given zip code
       def initialize(s)
         super((s || '').gsub(/\D+/, ''))
       end
