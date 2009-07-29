@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dm-address}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jared Morgan"]
-  s.date = %q{2009-07-22}
+  s.date = %q{2009-07-28}
   s.email = %q{jmorgan@morgancreative.net}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "dm-address.gemspec",
      "lib/dm-address.rb",
      "lib/dm-address/phone_number.rb",
+     "lib/dm-address/polymorphic.rb",
      "lib/dm-address/us.rb",
      "lib/dm-address/zip_code.rb",
      "lib/dm-types/phone_number.rb",
@@ -29,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/dm-validations/formats/phone_number.rb",
      "lib/dm-validations/formats/zip_code.rb",
      "spec/dm-address/phone_number_spec.rb",
+     "spec/dm-address/polymorphic_spec.rb",
      "spec/dm-address/us_spec.rb",
      "spec/dm-address/zip_code_spec.rb",
      "spec/dm-address_spec.rb",
@@ -43,6 +45,7 @@ Gem::Specification.new do |s|
   s.summary = %q{TODO}
   s.test_files = [
     "spec/dm-address/phone_number_spec.rb",
+     "spec/dm-address/polymorphic_spec.rb",
      "spec/dm-address/us_spec.rb",
      "spec/dm-address/zip_code_spec.rb",
      "spec/dm-address_spec.rb",
