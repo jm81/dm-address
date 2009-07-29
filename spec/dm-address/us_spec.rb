@@ -221,4 +221,24 @@ describe DataMapper::Address::US do
       @address.updated_at.should be_kind_of(DateTime)
     end
   end
+  
+  describe '#address_properties' do
+    describe ':polymorphic option' do
+      it 'should include Polymorphic module if true' do
+        klass = Class.new
+        klass.__send__(:include, DataMapper::Resource)
+        klass.__send__(:include, DataMapper::Address::US)
+        klass.address_properties(:polymorphic => true)
+        klass.properties.has_property?(:addressable_class).should be_true
+      end
+      
+      it 'should not include Polymorphic module if nil' do
+        klass = Class.new
+        klass.__send__(:include, DataMapper::Resource)
+        klass.__send__(:include, DataMapper::Address::US)
+        klass.address_properties
+        klass.properties.has_property?(:addressable_class).should be_false
+      end
+    end
+  end
 end

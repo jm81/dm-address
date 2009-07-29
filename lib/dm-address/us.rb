@@ -45,6 +45,10 @@ module DataMapper
               self.property(*args)
             end
           end
+          
+          if options[:polymorphic]
+            include(DataMapper::Address::Polymorphic)
+          end
         end
       end # module ClassMethods
       
