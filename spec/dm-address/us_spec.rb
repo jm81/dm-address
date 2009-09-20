@@ -217,7 +217,7 @@ describe DataMapper::Address::US do
         klass.__send__(:include, DataMapper::Resource)
         klass.__send__(:include, DataMapper::Address::US)
         klass.address_properties(:polymorphic => true)
-        klass.properties.has_property?(:addressable_class).should be_true
+        klass.properties.named?(:addressable_class).should be_true
       end
       
       it 'should not include Polymorphic module if nil' do
@@ -225,7 +225,7 @@ describe DataMapper::Address::US do
         klass.__send__(:include, DataMapper::Resource)
         klass.__send__(:include, DataMapper::Address::US)
         klass.address_properties
-        klass.properties.has_property?(:addressable_class).should be_false
+        klass.properties.named?(:addressable_class).should be_false
       end
     end
   end

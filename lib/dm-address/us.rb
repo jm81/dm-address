@@ -38,7 +38,7 @@ module DataMapper
             [:created_at, DateTime],
             [:updated_at, DateTime]
           ].each do |args|
-            unless self.properties.has_property?(args[0])
+            unless self.properties.named?(args[0])
               args[0] = "#{options[:prefix]}#{args[0]}" if options[:prefix]
               args[2] ||= {}
               args[2][:nullable] = !reqs.include?(args[0])

@@ -19,7 +19,7 @@ module DataMapper::Address::Spec
     include DataMapper::Resource
     
     property :id, Serial
-    has n, :addresses, :class_name => 'DataMapper::Address::Spec::Polymorphed',
+    has n, :addresses, :model => 'DataMapper::Address::Spec::Polymorphed',
            :child_key => [:addressable_id], 
            DataMapper::Address::Spec::Polymorphed.addressable_class =>
                'DataMapper::Address::Spec::Person'
