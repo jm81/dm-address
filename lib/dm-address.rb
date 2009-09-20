@@ -3,7 +3,7 @@ require 'dm-types'
 require 'dm-validations'
 
 # Require dm-address files
-%w{ phone_number zip_code polymorphic preferred us }.each do |file|
+%w{ phone_number zip_code polymorphic us }.each do |file|
   require 'dm-address/' + file
 end
 
