@@ -1,17 +1,5 @@
-require File.join( File.dirname(__FILE__), '..', "spec_helper" )
-
-DataMapper.setup(:default, 'sqlite3::memory:')
-require 'dm-timestamps' # Only needed to make #created_at and #updated_at auto-update
-
-module DataMapper::Address::Spec
-  class US
-    include DataMapper::Resource
-    include DataMapper::Address::US
-    address_properties
-  end
-  
-  US.auto_migrate!
-end
+require 'spec_helper'
+require 'dm-address/samples'
 
 describe DataMapper::Address::US do
   before(:each) do
@@ -51,7 +39,7 @@ describe DataMapper::Address::US do
   end
   
   describe '#name' do
-    it 'should note be required' do
+    it 'should not be required' do
       should_validate(:name, '', nil)
     end
   end
