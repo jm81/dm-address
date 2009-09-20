@@ -20,14 +20,14 @@ describe DataMapper::Address::US do
     @address = @klass.new(@attrs)
   end
   
-  def should_validate(field, *values)
+  def assert_validate(field, *values)
     values.each do |v|
       @address.__send__("#{field}=", v)
       @address.should be_valid
     end
   end
   
-  def should_not_validate(field, *values)
+  def assert_not_validate(field, *values)
     values.each do |v|
       @address.__send__("#{field}=", v)
       @address.should_not be_valid
@@ -40,37 +40,37 @@ describe DataMapper::Address::US do
   
   describe '#name' do
     it 'should not be required' do
-      should_validate(:name, '', nil)
+      assert_validate(:name, '', nil)
     end
   end
   
   describe '#street' do
     it 'should be required' do
-      should_not_validate(:street, '', nil)
+      assert_not_validate(:street, '', nil)
     end
   end
   
   describe '#city' do
     it 'should be required' do
-      should_not_validate(:city, '', nil)
+      assert_not_validate(:city, '', nil)
     end
   end
   
   describe '#state' do
     it 'should be required' do
-      should_not_validate(:state, '', nil)
+      assert_not_validate(:state, '', nil)
     end
   end
   
   describe '#postal_code' do
     it 'should be required' do
-      should_not_validate(:postal_code, '', nil)
+      assert_not_validate(:postal_code, '', nil)
     end
     
     it 'should be 5 or 9 characters' do
-      should_not_validate(:postal_code, '1234', '123456', '12345678', '1234567890')
-      should_not_validate(:postal_code, '12345-678') # would be valid if dashes weren't stripped
-      should_validate(:postal_code, '12345', '123456789', '12345-6789')
+      assert_not_validate(:postal_code, '1234', '123456', '12345678', '1234567890')
+      assert_not_validate(:postal_code, '12345-678') # would be valid if dashes weren't stripped
+      assert_validate(:postal_code, '12345', '123456789', '12345-6789')
     end
   end
   
@@ -102,7 +102,7 @@ describe DataMapper::Address::US do
   
   describe '#country' do
     it 'should be required' do
-      should_not_validate(:country, '', nil)
+      assert_not_validate(:country, '', nil)
     end
     
     it 'should default to USA' do
@@ -112,13 +112,13 @@ describe DataMapper::Address::US do
   
   describe '#phone' do
     it 'should not be required' do
-      should_validate(:phone, '', nil)
+      assert_validate(:phone, '', nil)
     end
     
     it 'should be 10 characters' do
-      should_not_validate(:phone, '123456789', '12345678900')
-      should_not_validate(:phone, '123-456-89')
-      should_validate(:phone, '1234567890')
+      assert_not_validate(:phone, '123456789', '12345678900')
+      assert_not_validate(:phone, '123-456-89')
+      assert_validate(:phone, '1234567890')
     end
   end
   
