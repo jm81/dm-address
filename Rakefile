@@ -4,18 +4,21 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "dm-address"
-    gem.summary = %Q{TODO}
+    gem.name = "jm81-dm-address"
+    gem.summary = %Q{Add address related fields to a DataMapper model}
+    gem.description = <<EOF
+Add address fields to a DataMapper model. This includes optional validations,
+and additional DM types for ZipCode and PhoneNumber.
+EOF
     gem.email = "jmorgan@morgancreative.net"
     gem.homepage = "http://github.com/jm81/dm-address"
     gem.authors = ["Jared Morgan"]
-    gem.add_dependency('extlib')
     gem.add_dependency('dm-core', '>= 0.10.0')
     gem.add_dependency('dm-types', '>= 0.10.0')
     gem.add_dependency('dm-validations', '>= 0.10.0')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
-
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
