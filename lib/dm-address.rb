@@ -9,7 +9,7 @@ end
 
 module DataMapper
   module Address
-    VERSION = '0.3.0'
+    VERSION = '0.4.0'
     
     DEFAULTS = {
       :phone_format => PhoneNumber::DEFAULT_FORMAT.dup,
