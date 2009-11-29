@@ -1,0 +1,3 @@
+Add :except option to address_properties
+(Usually a property can be ignored, but if this model belongs_to a model named, 
+e.g. Company, problems ensue. See http://datamapper.lighthouseapp.com/projects/20609/tickets/1057)
