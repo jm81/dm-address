@@ -17,6 +17,7 @@ module DataMapper::Address::Spec
   
   class Person
     include DataMapper::Resource
+    include DataMapper::Address::Preferred
     
     property :id, Serial
     has n, :addresses, :model => 'DataMapper::Address::Spec::Polymorphed',
@@ -25,6 +26,7 @@ module DataMapper::Address::Spec
                'DataMapper::Address::Spec::Person'
     
     property :name, String
+    preferred_address :shipping
   end
 end
 
