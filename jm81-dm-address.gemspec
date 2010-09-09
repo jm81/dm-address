@@ -5,32 +5,36 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jm81-dm-address}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jared Morgan"]
-  s.date = %q{2009-11-29}
+  s.date = %q{2010-09-09}
   s.description = %q{Add address fields to a DataMapper model. This includes optional validations,
 and additional DM types for ZipCode and PhoneNumber.
 }
   s.email = %q{jmorgan@morgancreative.net}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.rdoc",
+     "TODO"
   ]
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
-     "VERSION",
+     "TODO",
      "jm81-dm-address.gemspec",
      "lib/dm-address.rb",
      "lib/dm-address/phone_number.rb",
      "lib/dm-address/polymorphic.rb",
      "lib/dm-address/preferred.rb",
      "lib/dm-address/us.rb",
+     "lib/dm-address/version.rb",
      "lib/dm-address/zip_code.rb",
      "lib/dm-types/phone_number.rb",
      "lib/dm-types/zip_code.rb",
@@ -45,43 +49,51 @@ and additional DM types for ZipCode and PhoneNumber.
      "spec/dm-address_spec.rb",
      "spec/dm-types/phone_number_spec.rb",
      "spec/dm-types/zip_code_spec.rb",
+     "spec/fixtures/types-fixture.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/jm81/dm-address}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Add address related fields to a DataMapper model}
   s.test_files = [
-    "spec/dm-address/phone_number_spec.rb",
-     "spec/dm-address/polymorphic_spec.rb",
-     "spec/dm-address/preferred_spec.rb",
-     "spec/dm-address/samples.rb",
-     "spec/dm-address/us_spec.rb",
-     "spec/dm-address/zip_code_spec.rb",
+    "spec/spec_helper.rb",
      "spec/dm-address_spec.rb",
      "spec/dm-types/phone_number_spec.rb",
      "spec/dm-types/zip_code_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/fixtures/types-fixture.rb",
+     "spec/dm-address/us_spec.rb",
+     "spec/dm-address/preferred_spec.rb",
+     "spec/dm-address/polymorphic_spec.rb",
+     "spec/dm-address/samples.rb",
+     "spec/dm-address/phone_number_spec.rb",
+     "spec/dm-address/zip_code_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<dm-core>, [">= 0.10.0"])
-      s.add_runtime_dependency(%q<dm-types>, [">= 0.10.0"])
-      s.add_runtime_dependency(%q<dm-validations>, [">= 0.10.0"])
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<dm-core>, ["~> 1.0.0"])
+      s.add_runtime_dependency(%q<dm-timestamps>, ["~> 1.0.0"])
+      s.add_runtime_dependency(%q<dm-types>, ["~> 1.0.0"])
+      s.add_runtime_dependency(%q<dm-validations>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<dm-migrations>, ["~> 1.0.0"])
     else
-      s.add_dependency(%q<dm-core>, [">= 0.10.0"])
-      s.add_dependency(%q<dm-types>, [">= 0.10.0"])
-      s.add_dependency(%q<dm-validations>, [">= 0.10.0"])
+      s.add_dependency(%q<dm-core>, ["~> 1.0.0"])
+      s.add_dependency(%q<dm-timestamps>, ["~> 1.0.0"])
+      s.add_dependency(%q<dm-types>, ["~> 1.0.0"])
+      s.add_dependency(%q<dm-validations>, ["~> 1.0.0"])
+      s.add_dependency(%q<dm-migrations>, ["~> 1.0.0"])
     end
   else
-    s.add_dependency(%q<dm-core>, [">= 0.10.0"])
-    s.add_dependency(%q<dm-types>, [">= 0.10.0"])
-    s.add_dependency(%q<dm-validations>, [">= 0.10.0"])
+    s.add_dependency(%q<dm-core>, ["~> 1.0.0"])
+    s.add_dependency(%q<dm-timestamps>, ["~> 1.0.0"])
+    s.add_dependency(%q<dm-types>, ["~> 1.0.0"])
+    s.add_dependency(%q<dm-validations>, ["~> 1.0.0"])
+    s.add_dependency(%q<dm-migrations>, ["~> 1.0.0"])
   end
 end
 
