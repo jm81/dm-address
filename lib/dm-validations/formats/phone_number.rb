@@ -6,7 +6,7 @@ module DataMapper
         def self.included(base)
           DataMapper::Validate::FormatValidator::FORMATS.merge!(
             :phone_number => [
-                Proc.new { |ph| ph.blank? || ph.length == 10 },
+                Proc.new { |ph| ph.blank? || ph.gsub(/\D+/, '').length == 10 },
                 lambda { |field, value| '%s should be 10 digits (include area code)'.t(value) }
             ]
           )

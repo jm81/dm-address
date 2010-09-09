@@ -12,10 +12,10 @@ describe DataMapper::Address::PhoneNumber do
     end
   end
   
-  describe '#base' do
+  describe '#to_str' do
     it 'should not be formatted (digits only)' do
-      @klass.new('405-555-5555').base.should == '4055555555'
-      @klass.new('(405) 555.5556').base.should == '4055555556'
+      @klass.new('405-555-5555').to_str.should == '4055555555'
+      @klass.new('(405) 555.5556').to_str.should == '4055555556'
     end
   end
   

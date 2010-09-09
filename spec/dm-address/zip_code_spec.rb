@@ -12,10 +12,10 @@ describe DataMapper::Address::ZipCode do
     end
   end
   
-  describe '#base' do
+  describe '#to_str' do
     it 'should not be formatted (digits only)' do
-      @klass.new('12345-6789').base.should == '123456789'
-      @klass.new('(12345 -67s80z').base.should == '123456780'
+      @klass.new('12345-6789').to_str.should == '123456789'
+      @klass.new('(12345 -67s80z').to_str.should == '123456780'
     end
   end
   

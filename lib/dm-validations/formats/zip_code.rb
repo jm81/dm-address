@@ -6,7 +6,7 @@ module DataMapper
         def self.included(base)
           DataMapper::Validate::FormatValidator::FORMATS.merge!(
             :zip_code => [
-                Proc.new { |zc| zc.blank? || zc.length == 5 || zc.length == 9 },
+                Proc.new { |zc| zc.blank? || zc.gsub(/\D+/, '').length == 5 || zc.gsub(/\D+/, '').length == 9 },
                 lambda { |field, value| '%s should be 5 digits or 9 digits (ZIP+4)'.t(value) }
             ]
           )

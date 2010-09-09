@@ -25,16 +25,16 @@ module DataMapper
                  DEFAULT_REQUIRED_FIELDS
           
           [
-            [:id, DataMapper::Types::Serial],
+            [:id, DataMapper::Property::Serial],
             [:name, String, {:length => 100}],
             [:company, String, {:length => 100}],
             [:street, String, {:length => 100}],
             [:street_2, String],
             [:city, String, {:length => 100}],
             [:state, String, {:length => 2}],
-            [:postal_code, DataMapper::Types::ZipCode, {:format => :zip_code}],
-            [:country, String, {:nullable => false, :length => 50, :default => 'USA'}],
-            [:phone, DataMapper::Types::PhoneNumber, {:format => :phone_number}],
+            [:postal_code, DataMapper::Property::ZipCode, {:format => :zip_code}],
+            [:country, String, {:required => false, :length => 50, :default => 'USA'}],
+            [:phone, DataMapper::Property::PhoneNumber, {:format => :phone_number}],
             [:created_at, DateTime],
             [:updated_at, DateTime]
           ].each do |args|
@@ -62,9 +62,9 @@ module DataMapper
           value = attribute_get(fld)
           fields << value unless value.blank?
         end
-        fields << "#{self.city}, #{self.state} #{self.postal_code.to_s}"
+        fields << "#{self.city}, #{self.state} #{ZipCode.new(self.postal_code).to_s}"
         fields << self.country if include_country
-        fields << self.phone.to_s if include_phone && !self.phone.blank?
+        fields << PhoneNumber.new(self.phone).to_s if include_phone && !self.phone.blank?
         fields.join(newline)
       end
       

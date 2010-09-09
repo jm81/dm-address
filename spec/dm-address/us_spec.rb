@@ -75,27 +75,37 @@ describe DataMapper::Address::US do
   end
   
   describe '#postal_code=' do
+    before(:each) { @address.save }
+    
     it 'should strip out non-digits' do
-      @address.postal_code = '12345-6789'
+      @address.update(:postal_code => '12345-6789')
+      @address.reload
       @address.postal_code.should == '123456789'
-      @address.postal_code = '(12345 -67s80z'
+
+      @address.update(:postal_code => '(12345 -67s80z')
+      @address.reload
       @address.postal_code.should == '123456780'
     end
   end
   
   describe '#postal_code.to_s' do
+    before(:each) { @address.save }
+    
     it 'should return empty String if #postal_code is blank' do
-      @address.postal_code = ''
+      @address.update!(:postal_code => '')
+      @address.reload
       @address.postal_code.to_s.should == ''
     end
     
     it 'should format 5-digit code as #####' do
-      @address.postal_code = '12345'
+      @address.update(:postal_code => '12345')
+      @address.reload
       @address.postal_code.to_s.should == '12345'
     end
     
     it 'should format 9-digit code as #####-####' do
-      @address.postal_code = '123456789'
+      @address.update(:postal_code => '123456789')
+      @address.reload
       @address.postal_code.to_s.should == '12345-6789'
     end
   end
@@ -123,22 +133,31 @@ describe DataMapper::Address::US do
   end
   
   describe '#phone=' do
+    before(:each) { @address.save }
+    
     it 'should strip out non-digits' do
-      @address.phone = '405-555-5555'
-      @address.phone.should == '4055555555'
-      @address.phone = '(405) 555.5556'
-      @address.phone.should == '4055555556'
+      @address.update(:phone => '405-555-5555')
+      @address.reload
+      @address.phone.to_str.should == '4055555555'
+
+      @address.update(:phone => '(405) 555.5556')
+      @address.reload
+      @address.phone.to_str.should == '4055555556'
     end
   end
   
   describe '#phone.to_s' do
+    before(:each) { @address.save }
+    
     it 'should return empty String if #phone is blank' do
-      @address.phone = ''
+      @address.update(:phone => '')
+      @address.reload
       @address.phone.to_s.should == ''
     end
     
     it 'should format as (###) ###-####' do
-      @address.phone = '1234567899'
+      @address.update(:phone => '1234567899')
+      @address.reload
       @address.phone.to_s.should == '(123) 456-7899'
     end
   end

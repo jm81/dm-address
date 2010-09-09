@@ -1,5 +1,5 @@
 DataMapper.setup(:default, 'sqlite3::memory:')
-require 'dm-timestamps' # Only needed to make #created_at and #updated_at auto-update
+require 'dm-migrations'
 
 module DataMapper::Address::Spec
   class US

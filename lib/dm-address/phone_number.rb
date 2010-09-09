@@ -5,10 +5,8 @@ module DataMapper
       
       # Remove all non-digits from given phone number
       def initialize(s)
-        super((s || '').gsub(/\D+/, ''))
+        super((s || '').to_str.gsub(/\D+/, ''))
       end
-      
-      alias base to_s
       
       # %A is area code, %P is prefix, %S is last 4 digits (suffix)
       # Default is "(%A) %P-%S" -> (###) ###-####
@@ -16,10 +14,10 @@ module DataMapper
         unless format
           format = DataMapper::Address.config[:phone_format] || DEFAULT_FORMAT
         end
-        return '' if base.nil? || base.empty?
-        format.gsub(/\%A/, base[0..2]).
-               gsub(/\%P/, base[3..5]).
-               gsub(/\%S/, base[6..9])
+        return '' if to_str.empty?
+        format.gsub(/\%A/, to_str[0..2]).
+               gsub(/\%P/, to_str[3..5]).
+               gsub(/\%S/, to_str[6..9])
       end
     end # class PhoneNumber
   end # module Address

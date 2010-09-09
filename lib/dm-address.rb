@@ -1,16 +1,15 @@
 require 'dm-core'
+require 'dm-timestamps'
 require 'dm-types'
 require 'dm-validations'
 
 # Require dm-address files
-%w{ phone_number zip_code polymorphic preferred us }.each do |file|
+%w{ phone_number zip_code polymorphic preferred us version }.each do |file|
   require 'dm-address/' + file
 end
 
 module DataMapper
   module Address
-    VERSION = '0.4.0'
-    
     DEFAULTS = {
       :phone_format => PhoneNumber::DEFAULT_FORMAT.dup,
       :include_country => false,
